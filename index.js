@@ -1,7 +1,16 @@
-document.getElementById("get-activity").addEventListener("click", function() {
+const btn = document.getElementById("get-activity");
+const activityEl = document.getElementById("activity");
+const titleEl = document.getElementById("title"); 
+
+btn.addEventListener("click", function () {
   fetch("https://apis.scrimba.com/bored/api/activity")
-    .then(response => response.json())
+    .then(res => res.json())
     .then(data => {
-      document.getElementById("activity").textContent = data.activity
-    })
-})
+      activityEl.textContent = data.activity;
+      titleEl.textContent = "🔥 Let’s do this!";
+      document.body.classList.add("excited");
+      activityEl.classList.remove("pop");
+      void activityEl.offsetWidth; 
+      activityEl.classList.add("pop");
+    });
+});
